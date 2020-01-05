@@ -19,7 +19,6 @@
                             </a>
                         </div>
         </li>
-<clients name="hello"></clients>
     </ul>
    
 </template>

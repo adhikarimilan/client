@@ -23,7 +23,6 @@
                 
             </div>
             
-       <input type="text" v-model="name"  @keyup.enter="send">
         @endsection
      {{-- <script src="{{asset('js/app.js')}}"></script>
     </body>

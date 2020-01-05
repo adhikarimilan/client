@@ -9,8 +9,8 @@
         <li class="nav-item {{request()->path()=="/" ? 'active' :''}}">
           <a class="nav-link " href="#" >Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item {{request()->path()=="link" ? 'active' :''}}">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item {{request()->path()=="chat" ? 'active' :''}}">
+          <a class="nav-link" href="{{url('chat')}}">Chat</a>
         </li>
       </ul>
       <user></user>
