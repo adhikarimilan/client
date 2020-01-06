@@ -23,3 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/send', 'ChatController@send')->name('send');
+Route::get('/logmeout', function(){
+    Auth::logout();
+})->name('send');

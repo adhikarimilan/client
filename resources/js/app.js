@@ -13,6 +13,14 @@ import Vue from 'vue'
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
 
+import Toaster from 'v-toaster'
+ 
+// You need a specific loader for CSS files like https://github.com/webpack/css-loader
+import 'v-toaster/dist/v-toaster.css'
+ 
+// optional set default imeout, the default is 10000 (10 seconds).
+Vue.use(Toaster, {timeout: 5000})
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -45,6 +53,7 @@ const app = new Vue({
         time:[],
         },
         typing:null,
+        online:0,
     },
     watch:{
       message(){
@@ -57,7 +66,11 @@ const app = new Vue({
     methods:{
       getTime(){
         let time = new Date();
-        return time.getHours()+':'+time.getMinutes();
+        let h=time.getHours();
+        if(h<10) h='0'+h;
+        let m=time.getMinutes();
+        if(m<10) m= '0'+m;
+        return h+':'+m;
       }
       ,
         send(){
@@ -67,7 +80,7 @@ const app = new Vue({
                 message: this.message,
               })
               .then(response=> {
-                console.log(response);
+               // console.log(response);
               })
               .catch(error=> {
                 console.log(error);
@@ -92,7 +105,8 @@ const app = new Vue({
         //console.log(e);
     })
     .listenForWhisper('typing', (e) => {
-      if(e.name.length>0){
+      //alert(e);
+      if(e.name!=null && e.name.length >0){
         this.typing="Someone is typing a message ...";
         //console.log(e.name);
       }
@@ -100,6 +114,21 @@ const app = new Vue({
       this.typing=null;
       
   });
+  Echo.join(`chat`)
+    .here((users) => {
+      this.online=users.length;
+        console.log(users);
+    })
+  .joining((user) => {
+    this.online+=1;
+    this.$toaster.success(user.name+' has joined.')
+   console.log(user.name+ " has joined");
+})
+.leaving((user) => {
+  this.online-=1;
+  this.$toaster.warning(user.name+' is offline.')
+    console.log(user.name +" is offline");
+});
     //console.log('mounted in app.js');
     }
 });

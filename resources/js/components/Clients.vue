@@ -4,9 +4,9 @@
         <h2>{{name}} haha</h2>
          <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#exampleModal">Add new Client</button>
         <ul class="pagination">
-            <li v-bind:class="[{disabled:!pagination.prev_page_url}]" class="page-item"><a href="#" class="page-link" @click="fetchClients(pagination.prev_page_url)">Prev</a></li>
+            <li v-bind:class="[{disabled:!pagination.prev_page_url}]" class="page-item"><a href="" class="page-link" @click.prevent="fetchClients(pagination.prev_page_url)">Prev</a></li>
             <li  class="page-item"><a class="page-link" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
-            <li v-bind:class="[{disabled:!pagination.next_page_url}]" class="page-item"><a href="#" class="page-link" @click="fetchClients(pagination.next_page_url)">Next</a></li>
+            <li v-bind:class="[{disabled:!pagination.next_page_url}]" class="page-item"><a href="" class="page-link" @click.prevent="fetchClients(pagination.next_page_url)">Next</a></li>
         </ul>
        
         </div>

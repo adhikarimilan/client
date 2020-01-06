@@ -12,7 +12,6 @@
         /* padding:25px; */
         border:1px solid saddlebrown;
         width:40vw;
-        
     }
     #msg-box{
         /* display: block; */
@@ -23,12 +22,20 @@
         overflow-X: hidden;
     }
     
+    @media only screen and (max-width: 800px) {
+  
+  .chat-bar{
+        /* padding:25px; */
+        border:1px solid saddlebrown;
+        width:95vw;
+    }
+}
     </style>
 @endsection
 @section('content')
 <div class="chat-bar">
     <div class="top-section p-3 text-center bg-dark text-light">
-        <h3>Chat App</h3>
+    <h3>Chat App <span class="badge badge-pill badge-primary">@{{online}}</span> </h3>
     </div>
   <div class="message-section p-1"  v-chat-scroll="{always: false, smooth: true}">
       
